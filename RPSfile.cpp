@@ -7,16 +7,13 @@ using namespace std;
 
 int main ()
 {
-	//int rock = 1;
-	//int paper = 2; 
-	//int scissors = 3; 
 	int word_picked; 
 	int comp;
 	
 	string winner;
-	string N; 
-	string Y;
-	string play_again;
+	char N; 
+	char Y;
+	char play_again;
 	enum name {rock=1, paper=2, scissors=3 };
 	srand(time(0));
 	int compscore = 0; 
@@ -26,9 +23,19 @@ int main ()
 		
 		comp=rand()%3+1; // picks number 1-3 
 
-		cout << "Let's play a game. Pick the number ROCK=1, PAPER=2, or SCISSORS=3 \n" << endl; // asks message 
+		cout <<"Let's play a game. Pick the number ROCK=1, PAPER=2, or SCISSORS=3. \n Best out of three! \n" << endl; // asks message 
 		cin >> word_picked;
-		if(word_picked < 1 || word_picked > 3) break;
+
+		try 
+			{
+			if(word_picked < 1 || word_picked > 3) 
+				throw word_picked;
+			}
+
+		catch (exception e)
+			{
+			cout << "Pick the number 1, 2, or 3. /n Rock = 1 /n Paper = 2 /n Scissors = 3 /n" << endl;
+			}
 		
 		if(comp == rock  && word_picked == rock) 
 			{ 
@@ -48,6 +55,7 @@ int main ()
 		else if(comp == rock && word_picked == paper) 
 			{
 				winner == "You won! Paper beats Rock! \n"; 
+				cout << "You won! Paper beats Rock! \n";
 				userscore++; 
 			}
 		else if (comp == scissors && word_picked == rock)
@@ -92,11 +100,12 @@ int main ()
 			cout << "Congratulations! You have won! Do you want to play again? Y/N ";
 			
 			cin >> play_again;
-			if( play_again == Y) 
+			if( play_again = 'Y') 
 			{
 				cout << "Okay! We're going to play again! ";
-				compscore = 0; 
-				userscore = 0; 
+				userscore = 0;
+				compscore= 0; 
+				
 			}
 		}
 
@@ -108,15 +117,18 @@ int main ()
 			cin >> play_again;
 			
 			
-			if( play_again == Y) 
+			if( play_again == 'Y' || play_again == 'y') 
 			{
-				cout << "Okay! We're going to play again! ";
+				//cin >> 'Y' >> 'y';
+				cout << "Okay! We're going to play again!\n " << endl;
 				compscore = 0; 
 				userscore = 0; 
 			}
 
-			if( play_again == N) 
+			else if( play_again == 'N'  || play_again == 'n') 
 			{
+				//cin >> 'N';
+				cout << "Thank you for playing! \n" << endl;
 				break;
 			}
 		}
